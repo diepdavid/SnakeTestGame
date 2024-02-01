@@ -14,15 +14,26 @@ namespace SnakeTestGame
             Console.WriteLine("Press Enter to start the game!");
             Console.Read();
 
-            while (!finished)
+            try
             {
-                canvas.drawCanvas();
-                snake.Input();
-                food.drawFood();
-                snake.drawSnake();
-                snake.moveSnake();
-                snake.snakeGrow(food.FoodLocation(), food);
+                while (!finished)
+                {
+                    canvas.drawCanvas();
+                    snake.Input();
+                    food.drawFood();
+                    snake.drawSnake();
+                    snake.moveSnake();
+                    snake.snakeGrow(food.FoodLocation(), food);
+                    snake.isDead();
+                    snake.hitWall(canvas);
+                }
             }
+            catch (SnakeException e)
+            {
+                Console.Clear();
+                Console.WriteLine(e.Message);
+            }
+
         }
     }
 }

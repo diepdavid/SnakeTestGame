@@ -83,19 +83,42 @@ public class Snake
 
         SnakeBody.Add(new Position(x, y));
         SnakeBody.RemoveAt(0);
-        Thread.Sleep(500);
+        Thread.Sleep(200);
     }
 
     public void snakeGrow(Position foodPos, Food f)
     {
-        Position snakeHead = SnakeBody[SnakeBody.Count - 1];
+        Position head = SnakeBody[SnakeBody.Count - 1];
 
         
-        if (snakeHead.x == foodPos.x && snakeHead.y == foodPos.y)
+        if (head.x == foodPos.x && head.y == foodPos.y)
         {
             SnakeBody.Add(new Position(x, y));
             f.newFoodLocation();
         }
 
+    }
+
+    public void isDead()
+    {
+        Position head = SnakeBody[SnakeBody.Count - 1];
+
+        for (int i = 0; i < SnakeBody.Count - 2; i++)
+        {
+            if (head.x == SnakeBody[i].x && head.y == SnakeBody[i].y)
+            {
+                throw new SnakeException("You lost");
+            }
+        }
+    }
+
+    public void hitWall(Canvas canvas)
+    {
+        Position head = SnakeBody[SnakeBody.Count - 1];
+
+        if (head.x >= canvas.Width || head.x < 0 || head.y >= canvas.Height || head.y < 0)
+        {
+            throw new SnakeException("You lost");
+        }
     }
 }
