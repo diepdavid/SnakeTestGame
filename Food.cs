@@ -9,8 +9,8 @@ public class Food
 
     public Food()
     {
-        foodPos.x = rnd.Next(0, canva.Width);
-        foodPos.y = rnd.Next(0, canva.Height);
+        foodPos.x = rnd.Next(1, canva.Width);
+        foodPos.y = rnd.Next(1, canva.Height);
     }
 
     public void drawFood()

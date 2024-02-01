@@ -1,4 +1,5 @@
-﻿namespace SnakeTestGame;
+﻿using System;
+namespace SnakeTestGame;
 
 public class SnakeException : ApplicationException
 {
@@ -6,5 +7,4 @@ public class SnakeException : ApplicationException
     {
             
     }
-
 }

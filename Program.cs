@@ -11,7 +11,7 @@ namespace SnakeTestGame
             Snake snake = new Snake();
             Food food = new Food();
 
-            Console.WriteLine("Press Enter to start the game!");
+            Console.WriteLine("\t \t \t \t Press Enter to start the game!");
             Console.Read();
 
             try
@@ -19,6 +19,9 @@ namespace SnakeTestGame
                 while (!finished)
                 {
                     canvas.drawCanvas();
+
+                    Console.SetCursorPosition(55, 5);
+                    Console.WriteLine($"Points: {snake.points}");
                     snake.Input();
                     food.drawFood();
                     snake.drawSnake();
@@ -32,6 +35,25 @@ namespace SnakeTestGame
             {
                 Console.Clear();
                 Console.WriteLine(e.Message);
+
+                Console.WriteLine("Restart: (y/n) ");
+                var c = char.Parse(Console.ReadLine());
+
+                switch (c)
+                {
+                    case 'y':
+                        Console.Clear();
+                        snake.x = 5;
+                        snake.y = 5;
+                        snake.points = 0;
+                        snake.SnakeBody.RemoveRange(0, snake.SnakeBody.Count - 1);
+                        break;
+
+                    case 'n':
+                        finished = true;
+                        break;
+                }
+                
             }
 
         }

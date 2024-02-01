@@ -2,7 +2,7 @@
 
 public class Snake
 {
-    private List<Position> SnakeBody;
+    public List<Position> SnakeBody;
     ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
     Food food = new Food();
 
@@ -11,11 +11,13 @@ public class Snake
 
     public int x { get; set; }
     public int y { get; set; }
+    public int points { get; set; }
 
     public Snake()
     {
         x = 5; 
         y = 5;
+        points = 0;
 
         SnakeBody = new List<Position>();
         SnakeBody.Add(new Position(x, y));
@@ -35,8 +37,8 @@ public class Snake
     {
         if (Console.KeyAvailable)
         {
-            key = keyInfo.KeyChar;
             keyInfo = Console.ReadKey(true);
+            key = keyInfo.KeyChar;
         }
     }
 
@@ -83,7 +85,7 @@ public class Snake
 
         SnakeBody.Add(new Position(x, y));
         SnakeBody.RemoveAt(0);
-        Thread.Sleep(200);
+        Thread.Sleep(100);
     }
 
     public void snakeGrow(Position foodPos, Food f)
@@ -95,6 +97,7 @@ public class Snake
         {
             SnakeBody.Add(new Position(x, y));
             f.newFoodLocation();
+            points++;
         }
 
     }
