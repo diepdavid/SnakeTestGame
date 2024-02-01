@@ -8,7 +8,7 @@ public class Canvas
     public Canvas()
     {
         Width = 50;
-        Height = 20;
+        Height = 25;
 
         Console.CursorVisible = false;
     }
