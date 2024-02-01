@@ -4,6 +4,8 @@ public class Snake
 {
     private List<Position> SnakeBody;
     ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
+    Food food = new Food();
+
     char key = 'd';
     char dir = 'r';
 
@@ -81,8 +83,19 @@ public class Snake
 
         SnakeBody.Add(new Position(x, y));
         SnakeBody.RemoveAt(0);
-        Thread.Sleep(100);
+        Thread.Sleep(500);
     }
 
-    
+    public void snakeGrow(Position foodPos, Food f)
+    {
+        Position snakeHead = SnakeBody[SnakeBody.Count - 1];
+
+        
+        if (snakeHead.x == foodPos.x && snakeHead.y == foodPos.y)
+        {
+            SnakeBody.Add(new Position(x, y));
+            f.newFoodLocation();
+        }
+
+    }
 }
